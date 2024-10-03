@@ -7,6 +7,7 @@ from manual_execution.model import PlaceOrderRequest, StrategyList
 import dhan_security.helper as helper
 from manual_execution.dhan.order import place_order_dhan
 from manual_execution.transaction_update import save_data
+from firebase.firebase import test
 
 manual_router: APIRouter = APIRouter(
     prefix="/manual",
@@ -35,25 +36,26 @@ def welcome():
 
 @manual_router.get("/reset")
 def reset_pnl():
-    global pnl
-    if pnl["position"][-1] == 1:
-        exit_from_current_postion()
-        save_data(pnl)
-    pnl = {
-        "strategy": [],
-        "script": [],
-        "expiry": [],
-        "date": [],
-        "atm": [],
-        "atm_id": [],
-        "hedge": [],
-        "hedge_id": [],
-        "quantity":[],
-        "transaction_type":[],
-        "order": [],
-        "position":[]
-    }
-    return pnl
+    test()
+    # global pnl
+    # if pnl["position"][-1] == 1:
+    #     exit_from_current_postion()
+    #     save_data(pnl)
+    # pnl = {
+    #     "strategy": [],
+    #     "script": [],
+    #     "expiry": [],
+    #     "date": [],
+    #     "atm": [],
+    #     "atm_id": [],
+    #     "hedge": [],
+    #     "hedge_id": [],
+    #     "quantity":[],
+    #     "transaction_type":[],
+    #     "order": [],
+    #     "position":[]
+    # }
+    # return pnl
 
 def update_pnl(body,security):
     global pnl
